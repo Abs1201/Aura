@@ -17,4 +17,6 @@ void UAuraAssetManager::StartInitialLoading()
 	Super::StartInitialLoading();
 
 	FAuraGameplayTags::InitializeNativeGameplayTags();
+	//not required after 5.3++
+	//UAbilitySystemGlobals::Get().InitGlobalData();
 }

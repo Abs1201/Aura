@@ -20,11 +20,16 @@ void UTargetDataUnderMouse::Activate()
 	else
 	{
 		//TODO: We are on the server, so listen for target data.
+		const FGameplayAbilitySpecHandle SpecHandle = GetAbilitySpecHandle();
+		const FPredictionKey ActivationPredictionKey = GetActivationPredictionKey();
+		AbilitySystemComponent.Get()->AbilityTargetDataSetDelegate(SpecHandle, ActivationPredictionKey).AddUObject(this, &UTargetDataUnderMouse::OnTargetDataReplicatedCallback);
+		const bool bCalledDelegate = AbilitySystemComponent.Get()->CallReplicatedTargetDataDelegatesIfSet(SpecHandle, ActivationPredictionKey);
+		if (!bCalledDelegate)
+		{
+			SetWaitingOnRemotePlayerData();
+		}
 	}
-	APlayerController* PC = Ability->GetCurrentActorInfo()->PlayerController.Get();
-	FHitResult CursorHit;
-	PC->GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
-	ValidData.Broadcast(CursorHit.Location);
+;
 }
 
 void UTargetDataUnderMouse::SendMouseCursorData()
@@ -34,6 +39,7 @@ void UTargetDataUnderMouse::SendMouseCursorData()
 	APlayerController* PC = Ability->GetCurrentActorInfo()->PlayerController.Get();
 	FHitResult CursorHit;
 	PC->GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+
 	FGameplayAbilityTargetDataHandle DataHandle;
 	FGameplayAbilityTargetData_SingleTargetHit* Data = new FGameplayAbilityTargetData_SingleTargetHit();
 	Data->HitResult = CursorHit;
@@ -45,6 +51,15 @@ void UTargetDataUnderMouse::SendMouseCursorData()
 		DataHandle,
 		FGameplayTag(),
 		AbilitySystemComponent->ScopedPredictionKey);
+	if (ShouldBroadcastAbilityTaskDelegates())
+	{
+		ValidData.Broadcast(DataHandle);
+	}
+}
+
+void UTargetDataUnderMouse::OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& DataHandle, FGameplayTag ActivationTag)
+{
+	AbilitySystemComponent->ConsumeClientReplicatedTargetData(GetAbilitySpecHandle(), GetActivationPredictionKey());
 	if (ShouldBroadcastAbilityTaskDelegates())
 	{
 		ValidData.Broadcast(DataHandle);
