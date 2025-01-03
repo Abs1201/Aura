@@ -5,6 +5,20 @@
 
 #include "AbilitySystemComponent.h"
 
+struct AuraDamageStatics {
+	AuraDamageStatics() {
+
+	}
+};
+
+static const AuraDamageStatics& DamageStatics() {
+	static AuraDamageStatics DStatics;
+}
+
+UExecCalc_Damage::UExecCalc_Damage()
+{
+}
+
 void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
 	const UAbilitySystemComponent* SourceASC = ExecutionParams.GetSourceAbilitySystemComponent();
@@ -12,4 +26,6 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	const AActor* SourceAvatar = SourceASC ? SourceASC->GetAvatarActor() : nullptr;
 	const AActor* TargetAvatar = TargetASC ? TargetASC->GetAvatarActor() : nullptr;
 	const FGameplayEffectSpec& Spec = ExecutionParams.GetOwningSpec();
+
+
 }
