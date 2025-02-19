@@ -44,21 +44,6 @@ void AAuraCharacter::PossessedBy(AController* NewController)
     AddCharacterAbilities();
 }
 
-void AAuraCharacter::OnRep_PlayerState()
-{
-    Super::OnRep_PlayerState();
-
-    // Init ability actor info for the Client
-    InitAbilityActorInfo();
-}
-
-int32 AAuraCharacter::GetPlayerLevel()
-{
-    const AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
-    check(AuraPlayerState);
-    return AuraPlayerState->GetPlayerLevel();
-}
-
 void AAuraCharacter::InitAbilityActorInfo()
 {
     AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
@@ -77,6 +62,23 @@ void AAuraCharacter::InitAbilityActorInfo()
     }
     InitializeDefaultAttributes();
 }
+
+void AAuraCharacter::OnRep_PlayerState()
+{
+    Super::OnRep_PlayerState();
+
+    // Init ability actor info for the Client
+    InitAbilityActorInfo();
+}
+
+int32 AAuraCharacter::GetPlayerLevel()
+{
+    const AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+    check(AuraPlayerState);
+    return AuraPlayerState->GetPlayerLevel();
+}
+
+
 
 void AAuraCharacter::BeginPlay()
 {
