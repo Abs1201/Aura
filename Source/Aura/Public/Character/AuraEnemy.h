@@ -23,15 +23,15 @@ class AURA_API AAuraEnemy : public AAuraCharacterBase, public IEnemyInterface
 public:
 	AAuraEnemy();
 
-	//~ Enemy Interface 
+	//~ EnemyInterface 
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
-	//~ end Enemy Interface
+	//~ end EnemyInterface
 
-	//~ Combat Interface
+	//~ CombatInterface
 	virtual int32 GetPlayerLevel() override;
 	virtual void Die() override;
-	//~ end Combat Interface
+	//~ end CombatInterface
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;
