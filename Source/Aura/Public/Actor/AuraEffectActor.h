@@ -41,6 +41,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass);
 
+	// diff in lec 27
 	UFUNCTION(BlueprintCallable)
 	void OnOverlap(AActor* TargetActor);
 

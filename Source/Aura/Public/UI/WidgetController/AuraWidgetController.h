@@ -31,7 +31,7 @@ struct FWidgetControllerParams
 	TObjectPtr<UAttributeSet> AttributeSet = nullptr;
 };
 /**
- * 
+ * started in lec 29
  */
 UCLASS()
 class AURA_API UAuraWidgetController : public UObject
