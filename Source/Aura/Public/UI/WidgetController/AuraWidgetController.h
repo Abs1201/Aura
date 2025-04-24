@@ -9,6 +9,7 @@
 class UAttributeSet;
 class UAbilitySystemComponent;
 
+// lec 33
 USTRUCT(BlueprintType)
 struct FWidgetControllerParams
 {

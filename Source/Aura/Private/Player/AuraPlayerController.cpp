@@ -32,12 +32,15 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 
 void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, ACharacter* TargetCharacter)
 {
+	//UE_LOG(LogTemp, Warning, TEXT("test b4 showdamagenumber"));
+
 	if (IsValid(TargetCharacter) && DamageTextComponentClass) {
 		UDamageTextComponent* DamageText = NewObject<UDamageTextComponent>(TargetCharacter, DamageTextComponentClass);
 		DamageText->RegisterComponent();
 		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
 		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 		DamageText->SetDamageText(DamageAmount);
+		//UE_LOG(LogTemp, Warning, TEXT("DamageTextComponentClass: %s"), *DamageTextComponentClass->GetName());
 	}
 }
 

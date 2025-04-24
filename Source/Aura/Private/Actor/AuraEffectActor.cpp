@@ -23,11 +23,20 @@ void AAuraEffectActor::BeginPlay()
 
 }
 
+// start in lec 38
 void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass)
 {
+	// lec 38
+	//IAbilitySystemInterface* ASCInterface = Cast<IAbilitySystemInterface>(TargetActor);
+	//if (ASCInterface) {
+	//	ASCInterface->GetAbilitySystemComponent();
+	//	UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	//}
+	// own dev team에서 굳이 interface를 쓴다고 한거 아니면 그냥 GetAbilitySystemComponent를 쓰는게 나음. 타고 들어가면 ASC포인팅 함.
+
+
 	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
 	if (TargetASC == nullptr) return;
-
 	check(GameplayEffectClass);
 	FGameplayEffectContextHandle EffectContextHandle = TargetASC->MakeEffectContext();
 	EffectContextHandle.AddSourceObject(this);

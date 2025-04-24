@@ -128,6 +128,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				}
 			}
 
+			// not working sibal
 			ShowFloatingText(Props, LocalIncomingDamage);
 		}
 	}

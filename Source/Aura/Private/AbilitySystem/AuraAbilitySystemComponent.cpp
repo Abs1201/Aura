@@ -7,6 +7,7 @@
 
 void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 {
+	// lec 54
 	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &UAuraAbilitySystemComponent::ClientEffectApplied);
 
 	//FAuraGameplayTags::Get().Attributes_Primary_Intelligence
@@ -62,12 +63,13 @@ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& In
 
 void UAuraAbilitySystemComponent::ClientEffectApplied_Implementation(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle)
 {
-	//GEngine->AddOnScreenDebugMessage(1, 8.f, FColor::Blue, FString("Effect Applied!"));
+	//GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Blue, FString("Effect Applied!"));
 
 	FGameplayTagContainer TagContainer;
 	EffectSpec.GetAllAssetTags(TagContainer);
-
 	EffectAssetTags.Broadcast(TagContainer);
+	// 아랫줄을 overlaywidgetcontroller.cpp에 넣었음
+	//GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, FString::Printf(TEXT("Effect Applied! Tag: %s"), *TagContainer.ToString()));
 
 	
 }
