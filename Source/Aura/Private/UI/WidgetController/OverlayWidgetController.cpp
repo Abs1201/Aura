@@ -25,6 +25,7 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetHealthAttribute()).AddLambda(
 		[this](const FOnAttributeChangeData& Data) {
 			OnHealthChanged.Broadcast(Data.NewValue);
+			//lec 62도중 생각나서 씀) 이거 WBP_HealthGlobe에서 binding해서 쓰는중. 뭐 다른데서도 또 쓸 수도 있지만~
 		}
 	);
 
@@ -58,13 +59,16 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 		{
 			for (const FGameplayTag& Tag : AssetTags)
 			{
+				// lec 59
 				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
 				
 				if (Tag.MatchesTag(MessageTag))
 				{
+					// lec 57,58_멤버함수 GetDataTableRowByTag접근 해야 해서 AddLambda []안에 this를 넣어야 함
 					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
 					MessageWidgetRowDelegate.Broadcast(*Row);
 				}
+				// lec 56
 				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
 				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
 				
