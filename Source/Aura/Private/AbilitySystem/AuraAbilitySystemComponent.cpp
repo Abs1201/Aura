@@ -10,6 +10,7 @@ void UAuraAbilitySystemComponent::AbilityActorInfoSet()
 	// lec 54
 	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &UAuraAbilitySystemComponent::ClientEffectApplied);
 
+	// lec 87_FAuraGameplayTags::InitializeNativeGameplayTags()로 제대로 적용되는지 확인하기 위해서 DebugMessage 띄워본 것.
 	//FAuraGameplayTags::Get().Attributes_Primary_Intelligence
 	/*const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Orange, FString::Printf(TEXT("Tag: %s"), *GameplayTags.Attributes_Secondary_Armor.ToString()));*/

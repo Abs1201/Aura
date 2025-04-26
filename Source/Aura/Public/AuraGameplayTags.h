@@ -12,6 +12,7 @@
  * Singleton containing native Gameplay Tags
  */
 
+// start in lec 86
 struct FAuraGameplayTags
 {
 public:

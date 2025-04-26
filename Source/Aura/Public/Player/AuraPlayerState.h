@@ -35,6 +35,7 @@ protected:
 	TObjectPtr<UAttributeSet> AttributeSet;
 
 private:
+	// lec 73 // ¡¯¬• player level¿” §ª§ª
 	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_Level)
 	int32 Level = 1;
 
