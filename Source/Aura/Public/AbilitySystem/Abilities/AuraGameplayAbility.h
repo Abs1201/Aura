@@ -9,6 +9,7 @@
 /**
  * 
  */
+// lec 98
 UCLASS()
 class AURA_API UAuraGameplayAbility : public UGameplayAbility
 {

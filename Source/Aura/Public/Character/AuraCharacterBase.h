@@ -84,6 +84,7 @@ protected:
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
 
 private:
+	// lec 98
 	UPROPERTY(EditAnywhere, Category = "Abilities")
 	TArray <TSubclassOf<UGameplayAbility>> StartupAbilities;
 

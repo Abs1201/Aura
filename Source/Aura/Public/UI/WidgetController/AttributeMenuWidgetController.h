@@ -10,12 +10,13 @@ class UAttributeInfo;
 struct FAuraAttributeInfo;
 struct FGameplayTag;
 struct FGameplayAttribute;
-
+// lec 93
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAttributeInfoSignature, const FAuraAttributeInfo&, Info);
 
 /**
  * 
  */
+// lec 92
 UCLASS(BlueprintType, Blueprintable)
 class AURA_API UAttributeMenuWidgetController : public UAuraWidgetController
 {

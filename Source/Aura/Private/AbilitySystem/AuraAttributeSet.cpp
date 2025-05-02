@@ -14,6 +14,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
+	// lec 95
 	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
 
 	/* Primary Attributes */

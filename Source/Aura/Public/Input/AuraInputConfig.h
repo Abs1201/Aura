@@ -9,6 +9,7 @@
 
 #include "AuraInputConfig.generated.h"
 
+// start at lec 100
 USTRUCT(BlueprintType)
 struct FAuraInputAction
 {
