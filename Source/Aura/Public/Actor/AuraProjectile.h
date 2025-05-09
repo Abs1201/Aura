@@ -12,6 +12,7 @@ class UNiagaraSystem;
 class USphereComponent;
 class UProjectileMovementComponent;
 
+// starting at lec 109
 UCLASS()
 class AURA_API AAuraProjectile : public AActor
 {
