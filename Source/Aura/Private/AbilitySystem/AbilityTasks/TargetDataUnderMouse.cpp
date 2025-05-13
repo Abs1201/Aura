@@ -29,9 +29,9 @@ void UTargetDataUnderMouse::Activate()
 			SetWaitingOnRemotePlayerData();
 		}
 	}
-;
 }
 
+// lec 117
 void UTargetDataUnderMouse::SendMouseCursorData()
 {
 	FScopedPredictionWindow ScopedPrediction(AbilitySystemComponent.Get());
@@ -57,6 +57,7 @@ void UTargetDataUnderMouse::SendMouseCursorData()
 	}
 }
 
+// lec 118
 void UTargetDataUnderMouse::OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& DataHandle, FGameplayTag ActivationTag)
 {
 	AbilitySystemComponent->ConsumeClientReplicatedTargetData(GetAbilitySpecHandle(), GetActivationPredictionKey());

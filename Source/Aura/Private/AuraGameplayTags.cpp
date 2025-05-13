@@ -97,7 +97,7 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 	);
 
 	GameplayTags.InputTag_RMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
-		FName("InputTag.RMG"),
+		FName("InputTag.RMB"),
 		FString("Input Tag for Right Mouse Button")
 	);
 
