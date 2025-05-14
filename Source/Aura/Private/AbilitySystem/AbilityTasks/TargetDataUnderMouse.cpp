@@ -57,7 +57,7 @@ void UTargetDataUnderMouse::SendMouseCursorData()
 	}
 }
 
-// lec 118
+// lec 118 
 void UTargetDataUnderMouse::OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& DataHandle, FGameplayTag ActivationTag)
 {
 	AbilitySystemComponent->ConsumeClientReplicatedTargetData(GetAbilitySpecHandle(), GetActivationPredictionKey());
