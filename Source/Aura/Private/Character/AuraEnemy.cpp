@@ -61,12 +61,22 @@ void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// 임의 추가, 125강 듣다가 hp바가 안보여서 추가했는데, 그냥 bp에 widget 추가하는게 더 나을듯
+	//if (HealthBarWidgetClass)
+	//{
+	//	HealthBar->SetWidgetClass(HealthBarWidgetClass);
+	//	HealthBar->SetWidgetSpace(EWidgetSpace::Screen);
+	//	HealthBar->SetDrawAtDesiredSize(true);
+	//}
+
+
 	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 
 	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 
 	InitAbilityActorInfo();
+	// lec 137.
 	UAuraAbilitySystemLibrary::GiveStartupAbilities(this, AbilitySystemComponent);
 
 	if (UAuraUserWidget* AuraUserWidget = Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()))
@@ -89,7 +99,7 @@ void AAuraEnemy::BeginPlay()
 				OnMaxHealthChanged.Broadcast(Data.NewValue);
 			}
 		);
-		
+		// lec 136. hit react
 		AbilitySystemComponent->RegisterGameplayTagEvent(FAuraGameplayTags::Get().Effects_HitReact, EGameplayTagEventType::NewOrRemoved).AddUObject(
 			this,
 			&AAuraEnemy::HitReactTagChanged
@@ -102,7 +112,7 @@ void AAuraEnemy::BeginPlay()
 
 }
 
-
+// lec 136. Hit React
 void AAuraEnemy::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
 {
 	bHitReacting = NewCount > 0;

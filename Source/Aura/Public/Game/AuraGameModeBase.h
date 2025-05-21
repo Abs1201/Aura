@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "AuraGameModeBase.generated.h"
 
+// lec 131
 class UCharacterClassInfo;
 /**
  * 

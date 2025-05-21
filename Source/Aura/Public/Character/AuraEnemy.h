@@ -66,6 +66,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UWidgetComponent> HealthBar;
 
+	// 임의 추가, 125강 듣다가 hp바가 안보여서 추가했는데, 그냥 bp에 widget 추가하는게 더 나을듯
+	//UPROPERTY(EditDefaultsOnly, Category = "UI")
+	//TSubclassOf<UUserWidget> HealthBarWidgetClass;
 
 private:
 	

@@ -42,8 +42,9 @@ public:
 	FGameplayTag InputTag_3;
 	FGameplayTag InputTag_4;
 
+	// lec 134. Set by caller _ since this 'Magnitude Calc type' is Key-value pair.
 	FGameplayTag Damage;
-
+	//136. react를 GE로 줄 줄이야..
 	FGameplayTag Effects_HitReact;
 
 protected:

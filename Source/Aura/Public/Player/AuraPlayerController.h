@@ -26,7 +26,7 @@ class AURA_API AAuraPlayerController : public APlayerController
 public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
-
+	// lec 141
 	UFUNCTION(Client, Reliable)
 	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
 
@@ -83,7 +83,7 @@ private:
 	TObjectPtr<USplineComponent> Spline;
 
 	void AutoRun();
-
+	// lec 141. showing dmg text
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
 };

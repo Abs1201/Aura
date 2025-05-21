@@ -26,7 +26,7 @@ public:
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
-
+	//lec 138
 	virtual void Die() override;
 
 	UFUNCTION(NetMulticast, Reliable)
@@ -65,8 +65,8 @@ protected:
 	virtual void InitializeDefaultAttributes() const;
 
 	void AddCharacterAbilities();
-
-	/* Disolve Effects */
+	// lec 139
+	/* Dissolve Effects */
 
 	void Dissolve();
 

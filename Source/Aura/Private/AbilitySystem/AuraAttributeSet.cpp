@@ -102,6 +102,8 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	{
 		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
 		UE_LOG(LogTemp, Warning, TEXT("Changed HEalth on %s, Health: %f"), *Props.TargetAvatarActor->GetName(), GetHealth());
+		UE_LOG(LogTemp, Warning, TEXT("Max Health on %s, MaxHealth: %f"), *Props.TargetAvatarActor->GetName(), GetMaxHealth());
+
 	}
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())
 	{
@@ -115,6 +117,7 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 		{
 			const float NewHealth = GetHealth() - LocalIncomingDamage;
 			SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
+			// lec 137. activate enemy hit react
 			const bool bFatal = NewHealth <= 0.f;
 			if (!bFatal)
 			{
@@ -129,7 +132,6 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 				}
 			}
 
-			// not working sibal
 			ShowFloatingText(Props, LocalIncomingDamage);
 		}
 	}
