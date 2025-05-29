@@ -28,7 +28,7 @@ public:
 	virtual void PlayerTick(float DeltaTime) override;
 	// lec 141
 	UFUNCTION(Client, Reliable)
-	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter, bool bBlockedHit, bool bCriticalHit);
 
 
 protected:
