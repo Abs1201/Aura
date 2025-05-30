@@ -11,7 +11,9 @@
 #include "AuraEnemy.generated.h"
 
 class UWidgetComponent;
-
+// lec 164
+class UBehaviorTree;
+class AAuraAIController;
 /**
  * 
  */
@@ -22,6 +24,8 @@ class AURA_API AAuraEnemy : public AAuraCharacterBase, public IEnemyInterface
 	
 public:
 	AAuraEnemy();
+
+	virtual void PossessedBy(AController* NewController) override;
 
 	//~ EnemyInterface 
 	virtual void HighlightActor() override;
@@ -69,6 +73,14 @@ protected:
 	// 임의 추가, 125강 듣다가 hp바가 안보여서 추가했는데, 그냥 bp에 widget 추가하는게 더 나을듯
 	//UPROPERTY(EditDefaultsOnly, Category = "UI")
 	//TSubclassOf<UUserWidget> HealthBarWidgetClass;
+
+	UPROPERTY(EditAnywhere, Category="AI")
+	TObjectPtr<UBehaviorTree> BehaviorTree;
+
+	UPROPERTY()
+	TObjectPtr<AAuraAIController> AuraAIController;
+
+
 
 private:
 	
