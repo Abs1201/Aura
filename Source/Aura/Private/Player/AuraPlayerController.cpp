@@ -34,7 +34,7 @@ void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, 
 {
 	//UE_LOG(LogTemp, Warning, TEXT("test b4 showdamagenumber"));
 
-	if (IsValid(TargetCharacter) && DamageTextComponentClass) {
+	if (IsValid(TargetCharacter) && DamageTextComponentClass && IsLocalController()) {
 		UDamageTextComponent* DamageText = NewObject<UDamageTextComponent>(TargetCharacter, DamageTextComponentClass);
 		DamageText->RegisterComponent();
 		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
