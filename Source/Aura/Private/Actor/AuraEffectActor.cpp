@@ -34,6 +34,9 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGam
 	//}
 	// own dev team에서 굳이 interface를 쓴다고 한거 아니면 그냥 GetAbilitySystemComponent를 쓰는게 나음. 타고 들어가면 ASC포인팅 함.
 
+	//lec 168
+	const bool bIsEnemy = TargetActor->ActorHasTag(FName("Enemy"));
+	if(!bApplyEffectsToEnemies && bIsEnemy) return;
 
 	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
 	if (TargetASC == nullptr) return;
@@ -49,10 +52,20 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGam
 	{
 		ActiveEffectHandles.Add(ActiveEffectHandle, TargetASC);
 	}
+	// lec 168
+	if(bDestroyOnEffectApplication && !bIsInfinite)
+	{
+		// If the effect is instant, we can destroy the actor immediately
+		// This is useful for effects that are applied once and then removed
+		Destroy();
+	}
 }
 
 void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 {
+	const bool bIsEnemy = TargetActor->ActorHasTag(FName("Enemy"));
+	if (!bApplyEffectsToEnemies && bIsEnemy) return;
+
 	if (InstantEffectApplicationPolicy == EEffectApplicationPolicy::ApplyOnOverlap)
 	{
 		ApplyEffectToTarget(TargetActor, InstantGameplayEffectClass);
@@ -69,6 +82,9 @@ void AAuraEffectActor::OnOverlap(AActor* TargetActor)
 
 void AAuraEffectActor::OnEndOverlap(AActor* TargetActor)
 {
+	const bool bIsEnemy = TargetActor->ActorHasTag(FName("Enemy"));
+	if (!bApplyEffectsToEnemies && bIsEnemy) return;
+
 	if (InstantEffectApplicationPolicy == EEffectApplicationPolicy::ApplyOnEndOverlap)
 	{
 		ApplyEffectToTarget(TargetActor, InstantGameplayEffectClass);
