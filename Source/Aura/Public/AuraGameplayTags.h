@@ -57,6 +57,9 @@ public:
 	FGameplayTag Damage_Arcane;
 	FGameplayTag Damage_Physical;
 
+	//lec 177.Melee Attack
+	FGameplayTag Abilities_Attack;
+
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 
 

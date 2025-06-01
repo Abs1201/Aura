@@ -105,7 +105,7 @@ void AAuraEnemy::BeginPlay()
 	// lec 162. 개인적으로 제일 중요한 강의라고 생각됨. debugging 심화.
 	if (HasAuthority()) {
 		// lec 137.
-		UAuraAbilitySystemLibrary::GiveStartupAbilities(this, AbilitySystemComponent);
+		UAuraAbilitySystemLibrary::GiveStartupAbilities(this, AbilitySystemComponent, CharacterClass);
 	}
 	
 
