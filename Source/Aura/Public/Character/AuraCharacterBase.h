@@ -25,9 +25,16 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
+	/*Combat Interface*/
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
 	//lec 138
 	virtual void Die() override;
+	// revised at lec 180
+	virtual FVector GetCombatSocketLocation_Implementation() override;
+	// diff from lec 181 _ I just implement here
+	virtual bool IsDead_Implementation() const override { return bDead; }
+	virtual AActor* GetAvatar_Implementation() override { return this; }
+	/*End Combat Interface*/
 
 	UFUNCTION(NetMulticast, Reliable)
 	virtual void MulticastHandleDeath();
@@ -39,8 +46,9 @@ protected:
 	// lec 111
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponTipSocketName;
-	// revised at lec 180
-	virtual FVector GetCombatSocketLocation_Implementation() override;
+	
+	//181
+	bool bDead = false;
 
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
