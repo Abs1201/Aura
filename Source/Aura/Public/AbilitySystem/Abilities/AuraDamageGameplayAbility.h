@@ -14,7 +14,11 @@ UCLASS()
 class AURA_API UAuraDamageGameplayAbility : public UAuraGameplayAbility
 {
 	GENERATED_BODY()
-	
+	//lec 182
+public:
+	UFUNCTION(BlueprintCallable)
+	void CauseDamage(AActor* TargetActor);
+
 protected:
 	// lec 124
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)

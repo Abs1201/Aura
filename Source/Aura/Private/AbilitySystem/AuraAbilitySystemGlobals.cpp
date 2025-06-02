@@ -8,3 +8,8 @@ FGameplayEffectContext* UAuraAbilitySystemGlobals::AllocGameplayEffectContext() 
 {
 	return new FAuraGameplayEffectContext();
 }
+
+void UAuraAbilitySystemGlobals::InitGlobalData()
+{
+	Super::InitGlobalData();
+}
