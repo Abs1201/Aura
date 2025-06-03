@@ -60,6 +60,11 @@ public:
 	//lec 177.Melee Attack
 	FGameplayTag Abilities_Attack;
 
+	// lec 184. Montage Gameplay Tag. 골렘뿐만아니라 몬스터들의 공격 소켓을 태그로 받아오기위함.
+	FGameplayTag Montage_Attack_Weapon;
+	FGameplayTag Montage_Attack_RightHand;
+	FGameplayTag Montage_Attack_LeftHand;
+
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 
 
