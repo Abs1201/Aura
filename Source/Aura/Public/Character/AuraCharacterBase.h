@@ -35,9 +35,16 @@ public:
 	virtual bool IsDead_Implementation() const override { return bDead; }
 	virtual AActor* GetAvatar_Implementation() override { return this; }
 	/*End Combat Interface*/
+	// lec 185
+	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override { return AttackMontages; }
 
 	UFUNCTION(NetMulticast, Reliable)
 	virtual void MulticastHandleDeath();
+
+	//lec 185
+	UPROPERTY(EditAnywhere, Category="Combat")
+	TArray<FTaggedMontage> AttackMontages;
+
 protected:
 	virtual void BeginPlay() override;
 
