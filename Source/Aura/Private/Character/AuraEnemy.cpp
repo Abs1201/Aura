@@ -59,8 +59,11 @@ void AAuraEnemy::HighlightActor()
 	//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.f, 20, FColor::Blue, false, 5.f);
 	GetMesh()->SetRenderCustomDepth(true);
 	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
-	Weapon->SetRenderCustomDepth(true);
-	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	if (Weapon) {
+		Weapon->SetRenderCustomDepth(true);
+		Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	}
+
 
 }
 
@@ -68,7 +71,9 @@ void AAuraEnemy::UnHighlightActor()
 {
 	//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.f, 20, FColor::Red, false, 5.f);
 	GetMesh()->SetRenderCustomDepth(false);
-	Weapon->SetRenderCustomDepth(false);
+	if (Weapon) {
+		Weapon->SetRenderCustomDepth(false);
+	}
 }
 
 int32 AAuraEnemy::GetPlayerLevel()
@@ -107,7 +112,9 @@ void AAuraEnemy::BeginPlay()
 
 
 	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
-	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	if (Weapon) {
+		Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	}
 
 	GetCharacterMovement()->MaxWalkSpeed = BaseWalkSpeed;
 

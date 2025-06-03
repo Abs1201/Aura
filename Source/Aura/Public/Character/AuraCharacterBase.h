@@ -30,7 +30,7 @@ public:
 	//lec 138
 	virtual void Die() override;
 	// revised at lec 180
-	virtual FVector GetCombatSocketLocation_Implementation() override;
+	virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag) override;
 	// diff from lec 181 _ I just implement here
 	virtual bool IsDead_Implementation() const override { return bDead; }
 	virtual AActor* GetAvatar_Implementation() override { return this; }
@@ -53,6 +53,10 @@ protected:
 	// lec 111
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	FName WeaponTipSocketName;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	FName LeftHandSocketName;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	FName RightHandSocketName;
 	
 	//181
 	bool bDead = false;
