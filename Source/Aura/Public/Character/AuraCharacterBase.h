@@ -14,6 +14,7 @@ class UAttributeSet;
 class UGameplayEffect;
 class UGameplayAbility;
 class UAnimMontage;
+class UNiagaraSystem;
 
 UCLASS(Abstract)
 class AURA_API AAuraCharacterBase : public ACharacter, public IAbilitySystemInterface, public ICombatInterface
@@ -34,6 +35,8 @@ public:
 	// diff from lec 181 _ I just implement here
 	virtual bool IsDead_Implementation() const override { return bDead; }
 	virtual AActor* GetAvatar_Implementation() override { return this; }
+	// 205
+	virtual UNiagaraSystem* GetBloodEffect_Implementation() override { return BloodEffect; }
 	/*End Combat Interface*/
 	// lec 185
 	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override { return AttackMontages; }
@@ -101,6 +104,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance;
+	// lec 205. Impact effect
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Combat")
+	UNiagaraSystem* BloodEffect;
 
 private:
 	// lec 98
