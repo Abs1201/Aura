@@ -72,19 +72,29 @@ FVector AAuraCharacterBase::GetCombatSocketLocation_Implementation(const FGamepl
 	//check(Weapon);
 	//return Weapon->GetSocketLocation(WeaponTipSocketName);
 	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
-	if(Weapon && MontageTag.MatchesTagExact(GameplayTags.Montage_Attack_Weapon))
+	if(Weapon && MontageTag.MatchesTagExact(GameplayTags.CombatSocket_Weapon))
 	{
 		return Weapon->GetSocketLocation(WeaponTipSocketName);
 	}
-	if (MontageTag.MatchesTagExact(GameplayTags.Montage_Attack_LeftHand))
+	if (MontageTag.MatchesTagExact(GameplayTags.CombatSocket_LeftHand))
 	{
 		return GetMesh()->GetSocketLocation(LeftHandSocketName);
 	}
-	if (MontageTag.MatchesTagExact(GameplayTags.Montage_Attack_RightHand))
+	if (MontageTag.MatchesTagExact(GameplayTags.CombatSocket_RightHand))
 	{
 		return GetMesh()->GetSocketLocation(RightHandSocketName);
 	}
 	return FVector();
+}
+
+FTaggedMontage AAuraCharacterBase::GetTaggedMontageByTag_Implementation(const FGameplayTag& MontageTag)
+{
+	for (FTaggedMontage TaggedMontage : AttackMontages) {
+		if (TaggedMontage.MontageTag == MontageTag) {
+			return TaggedMontage;
+		}
+	}
+	return FTaggedMontage();
 }
 
 void AAuraCharacterBase::InitAbilityActorInfo()

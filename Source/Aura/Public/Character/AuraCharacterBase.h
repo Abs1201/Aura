@@ -37,7 +37,12 @@ public:
 	virtual AActor* GetAvatar_Implementation() override { return this; }
 	// 205
 	virtual UNiagaraSystem* GetBloodEffect_Implementation() override { return BloodEffect; }
+	//207
+	virtual FTaggedMontage GetTaggedMontageByTag_Implementation(const FGameplayTag& MontageTag) override;
+
 	/*End Combat Interface*/
+	
+	
 	// lec 185
 	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override { return AttackMontages; }
 
