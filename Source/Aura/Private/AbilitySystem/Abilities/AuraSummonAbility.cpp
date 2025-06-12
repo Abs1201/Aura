@@ -15,19 +15,22 @@ TArray<FVector> UAuraSummonAbility::GetSpawnLocations()
 
 	for (int32 i = 0; i < NumMinions; i++) {
 		const FVector Direction = LeftOfSpread.RotateAngleAxis(DeltaSpread * i, FVector::UpVector);
-		const FVector SpawnLocation = Location + Direction * FMath::RandRange(MinSpawnDistance, MaxSpawnDistance);
+		FVector SpawnLocation = Location + Direction * FMath::RandRange(MinSpawnDistance, MaxSpawnDistance);
+		//220
+		FHitResult Hit;
+		GetWorld()->LineTraceSingleByChannel(Hit, SpawnLocation + FVector(0.f, 0.f, 400.f), SpawnLocation - FVector(0.f, 0.f, 400.f), ECC_Visibility);
+		if (Hit.bBlockingHit) {
+			SpawnLocation = Hit.ImpactPoint;
+		}
+
+
+
 		SpawnLocations.Add(SpawnLocation);
 
-		DrawDebugSphere(GetWorld(), SpawnLocation, 18.f, 12, FColor::Cyan, false, 3.f);
-
-
-		UKismetSystemLibrary::DrawDebugArrow(GetAvatarActorFromActorInfo(), Location, Location + Direction * MaxSpawnDistance, 4.f, FLinearColor::Green, 3.f);
-
-
-		DrawDebugSphere(GetWorld(), Location + Direction * MinSpawnDistance, 5.f, 12, FColor::Red, false, 3.f);
-
-
-		DrawDebugSphere(GetWorld(), Location + Direction * MaxSpawnDistance, 5.f, 12, FColor::Red, false, 3.f);
+		//DrawDebugSphere(GetWorld(), SpawnLocation, 18.f, 12, FColor::Cyan, false, 3.f);
+		//UKismetSystemLibrary::DrawDebugArrow(GetAvatarActorFromActorInfo(), Location, Location + Direction * MaxSpawnDistance, 4.f, FLinearColor::Green, 3.f);
+		//DrawDebugSphere(GetWorld(), Location + Direction * MinSpawnDistance, 5.f, 12, FColor::Red, false, 3.f);
+		//DrawDebugSphere(GetWorld(), Location + Direction * MaxSpawnDistance, 5.f, 12, FColor::Red, false, 3.f);
 	}
 
 
