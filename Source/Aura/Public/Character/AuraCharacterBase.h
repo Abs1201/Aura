@@ -41,6 +41,8 @@ public:
 	virtual FTaggedMontage GetTaggedMontageByTag_Implementation(const FGameplayTag& MontageTag) override;
 	//224
 	virtual int32 GetMinionCount_Implementation() override { return MinionCount; }
+	//226
+	virtual void IncrementMinionCount_Implementation(int32 Count) override { MinionCount += Count; }
 	/*End Combat Interface*/
 	
 	
