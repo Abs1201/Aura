@@ -69,8 +69,8 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 					MessageWidgetRowDelegate.Broadcast(*Row);
 				}
 				// lec 56
-				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
-				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
+				//const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
+				//GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
 				
 			}
 		}

@@ -165,7 +165,7 @@ void AAuraEnemy::BeginPlay()
 // lec 136. Hit React
 void AAuraEnemy::HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
 {
-	UE_LOG(LogTemp, Warning, TEXT("HitReactTagChanged: %s, NewCount: %d"), *CallbackTag.ToString(), NewCount);
+	//UE_LOG(LogTemp, Warning, TEXT("HitReactTagChanged: %s, NewCount: %d"), *CallbackTag.ToString(), NewCount);
 	bHitReacting = NewCount > 0;
 	GetCharacterMovement()->MaxWalkSpeed = bHitReacting ? 0.f : BaseWalkSpeed;
 	// lec 169, 183(if state++)
