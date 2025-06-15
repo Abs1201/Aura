@@ -10,6 +10,7 @@
 
 struct FOnAttributeChangeData;
 class UAuraUserWidget;
+class UAbilityInfo;
 
 // lec 57 - 이거 아이템 주웠을때 슉하고 나오는 그거임
 USTRUCT(BlueprintType)
@@ -79,6 +80,10 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
 	TObjectPtr<UDataTable> MessageWidgetDataTable;
+
+	//239
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
+	TObjectPtr<UAbilityInfo> AbilityInfo;
 
 	// lec 58
 	template<typename T>
