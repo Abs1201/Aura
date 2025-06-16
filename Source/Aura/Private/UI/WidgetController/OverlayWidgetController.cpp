@@ -49,32 +49,51 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 			OnMaxManaChanged.Broadcast(Data.NewValue);
 		}
 	);
+
+	if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)) {
+		if (AuraASC->bStartupAbilitiesGiven) {
+			OnInitializeStartupAbilites(AuraASC);
+		}
+		else {
+			AuraASC->AbilitiesGivenDelegate.AddUObject(this, &UOverlayWidgetController::OnInitializeStartupAbilites);
+		}
+
+		AuraASC->EffectAssetTags.AddLambda(
+			[this](const FGameplayTagContainer& AssetTags)
+			{
+				for (const FGameplayTag& Tag : AssetTags)
+				{
+					// lec 59
+					FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+
+					if (Tag.MatchesTag(MessageTag))
+					{
+						// lec 57,58_멤버함수 GetDataTableRowByTag접근 해야 해서 AddLambda []안에 this를 넣어야 함
+						const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+						MessageWidgetRowDelegate.Broadcast(*Row);
+					}
+					// lec 56
+					//const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
+					//GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
+
+				}
+			}
+		);
+	}
+
+	
 	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetHealthAttribute()).AddUObject(this, &UOverlayWidgetController::HealthChanged);
 	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetMaxHealthAttribute()).AddUObject(this, &UOverlayWidgetController::MaxHealthChanged);
 	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetManaAttribute()).AddUObject(this, &UOverlayWidgetController::ManaChanged);
 	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetMaxManaAttribute()).AddUObject(this, &UOverlayWidgetController::MaxManaChanged);
 
-	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
-		[this](const FGameplayTagContainer& AssetTags)
-		{
-			for (const FGameplayTag& Tag : AssetTags)
-			{
-				// lec 59
-				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
-				
-				if (Tag.MatchesTag(MessageTag))
-				{
-					// lec 57,58_멤버함수 GetDataTableRowByTag접근 해야 해서 AddLambda []안에 this를 넣어야 함
-					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
-					MessageWidgetRowDelegate.Broadcast(*Row);
-				}
-				// lec 56
-				//const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
-				//GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
-				
-			}
-		}
-	);
+}
+
+void UOverlayWidgetController::OnInitializeStartupAbilites(UAuraAbilitySystemComponent* AuraASC)
+{
+	// Get information about all given abilites, look up their ability info. and braodcast it to widgets
+	if (!AuraASC->bStartupAbilitiesGiven) return;
+
 
 }
 

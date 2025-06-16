@@ -11,6 +11,7 @@
 struct FOnAttributeChangeData;
 class UAuraUserWidget;
 class UAbilityInfo;
+class UAuraAbilitySystemComponent;
 
 // lec 57 - 이거 아이템 주웠을때 슉하고 나오는 그거임
 USTRUCT(BlueprintType)
@@ -88,6 +89,8 @@ protected:
 	// lec 58
 	template<typename T>
 	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
+
+	void OnInitializeStartupAbilites(UAuraAbilitySystemComponent* AuraASC);
 };
 
 // lec 58
