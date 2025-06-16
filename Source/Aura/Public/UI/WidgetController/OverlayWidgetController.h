@@ -12,6 +12,7 @@ struct FOnAttributeChangeData;
 class UAuraUserWidget;
 class UAbilityInfo;
 class UAuraAbilitySystemComponent;
+struct FAuraAbilityInfo;
 
 // lec 57 - 이거 아이템 주웠을때 슉하고 나오는 그거임
 USTRUCT(BlueprintType)
@@ -41,6 +42,8 @@ struct FUIWidgetRow : public FTableRowBase
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float, NewValue);
 // lec 59
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMessageWidgetRowSignature, FUIWidgetRow, Row);
+//241
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAbilityInfoSignature, const FAuraAbilityInfo&, Info);
 
 
 
@@ -72,6 +75,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FMessageWidgetRowSignature MessageWidgetRowDelegate;
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
+	FAbilityInfoSignature AbilityInfoDelegate;
 
 protected:
 	void HealthChanged(const FOnAttributeChangeData& Data) const;

@@ -8,6 +8,7 @@
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*AssetTags*/);
 DECLARE_MULTICAST_DELEGATE_OneParam(FAbilitiesGiven, UAuraAbilitySystemComponent*);
+DECLARE_DELEGATE(FForEachAbility, const FGameplayAbilitySpec);
 
 /**
  * 
@@ -30,6 +31,11 @@ public:
 
 	void AbilityInputTagHeld(const FGameplayTag& InputTag);
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
+	void ForEachAbility(const FForEachAbility& Delegate);
+
+	static FGameplayTag GetAbilityTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
+	static FGameplayTag GetInputTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
+
 protected:
 	// lec 54_ ASC에서 FOnGameplayEffectAppliedDelegate를 사용하여 GameplayEffect가 적용될 때마다 호출되는 함수로 사용하기위해 AddUObject를 사용하여 Delegate를 바인딩합니다.
 	UFUNCTION(Client, Reliable)
