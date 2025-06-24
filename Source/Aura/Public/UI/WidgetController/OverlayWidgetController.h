@@ -79,6 +79,10 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FAbilityInfoSignature AbilityInfoDelegate;
 
+	UPROPERTY(BlueprintAssignable, Category = "GAS|XP")
+	FOnAttributeChangedSignature OnXPPercentChangedDelegate;
+
+
 protected:
 	//void HealthChanged(const FOnAttributeChangeData& Data) const;
 	//void MaxHealthChanged(const FOnAttributeChangeData& Data) const;
@@ -97,6 +101,9 @@ protected:
 	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
 
 	void OnInitializeStartupAbilites(UAuraAbilitySystemComponent* AuraASC);
+
+	void OnXPChanged(int32 NewXP) const;
+
 };
 
 // lec 58
