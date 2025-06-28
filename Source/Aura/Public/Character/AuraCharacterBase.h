@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "Interaction/CombatInterface.h"
+#include "AbilitySystem/Data/CharacterClassInfo.h"
 
 #include "AuraCharacterBase.generated.h"
 
@@ -43,6 +44,7 @@ public:
 	virtual int32 GetMinionCount_Implementation() override { return MinionCount; }
 	//226
 	virtual void IncrementMinionCount_Implementation(int32 Count) override { MinionCount += Count; }
+	virtual ECharacterClass GetCharacterClass_Implementation() override { return CharacterClass; }
 	/*End Combat Interface*/
 	
 	
@@ -123,6 +125,9 @@ protected:
 	USoundBase* DeathSound;
 
 	int32 MinionCount = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	ECharacterClass CharacterClass = ECharacterClass::Warrior;
 
 private:
 	// lec 98

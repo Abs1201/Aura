@@ -33,6 +33,8 @@ AAuraCharacter::AAuraCharacter()
     bUseControllerRotationRoll = false;
     bUseControllerRotationYaw = false;
 
+    CharacterClass = ECharacterClass::Elementalist;
+
 }
 
 void AAuraCharacter::PossessedBy(AController* NewController)
