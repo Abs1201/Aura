@@ -149,6 +149,12 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			ShowFloatingText(Props, LocalIncomingDamage, bBlockedHit, bCriticalHit);
 		}
 	}
+	if (Data.EvaluatedData.Attribute == GetIncomingXPAttribute())
+	{
+		const float LocalIncomingXP = GetIncomingXP();
+		SetIncomingXP(0.f);
+		UE_LOG(LogTemp, Warning, TEXT("XP from GetXP: %f"), LocalIncomingXP);
+	}
 }
 
 void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float Damage, bool bBlockedHit, bool bCriticalHit) const

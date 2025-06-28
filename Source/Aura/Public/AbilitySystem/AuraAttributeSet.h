@@ -200,7 +200,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Meta Attributes")
 	FGameplayAttributeData IncomingDamage;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, IncomingDamage);
-
+	// 255. incoming xp 
+	UPROPERTY(BlueprintReadOnly, Category = "Meta Attributes")
+	FGameplayAttributeData IncomingXP;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, IncomingXP);
 
 	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
