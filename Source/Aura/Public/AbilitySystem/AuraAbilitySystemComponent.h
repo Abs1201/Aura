@@ -26,6 +26,8 @@ public:
 	FAbilitiesGiven AbilitiesGivenDelegate;
 	// lec 98
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
+	void AddCharacterPassiveAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupPassiveAbilities);
+
 	//240. init Overlay Startup Abilites
 	bool bStartupAbilitiesGiven = false;
 
