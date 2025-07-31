@@ -48,6 +48,8 @@ public:
 	FGameplayTag InputTag_2;
 	FGameplayTag InputTag_3;
 	FGameplayTag InputTag_4;
+	FGameplayTag InputTag_Passive_1;
+	FGameplayTag InputTag_Passive_2;
 
 	
 	// lec 134. Set by caller _ since this 'Magnitude Calc type' is Key-value pair.
