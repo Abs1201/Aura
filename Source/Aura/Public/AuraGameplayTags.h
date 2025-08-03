@@ -80,6 +80,8 @@ public:
 
 	//239
 	FGameplayTag Abilities_Fire_FireBolt;
+	FGameplayTag Abilities_Lightning_Electrocute;
+
 	FGameplayTag Cooldown_Fire_FireBolt;
 
 	// lec 184. Montage Gameplay Tag. 골렘뿐만아니라 몬스터들의 공격 소켓을 태그로 받아오기위함. ,207
