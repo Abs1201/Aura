@@ -9,6 +9,7 @@
 DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*AssetTags*/);
 DECLARE_MULTICAST_DELEGATE(FAbilitiesGiven);
 DECLARE_DELEGATE_OneParam(FForEachAbility, const FGameplayAbilitySpec);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FAbilityStatusChanged, const FGameplayTag& /*AbilityTag*/, const FGameplayTag& /*StatusTag*/);
 
 /**
  * 
@@ -24,6 +25,9 @@ public:
 	FEffectAssetTags EffectAssetTags;
 	//240. init Overlay Startup Abilites
 	FAbilitiesGiven AbilitiesGivenDelegate;
+	//285
+	FAbilityStatusChanged AbilityStatusChanged;
+
 	// lec 98
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
 	void AddCharacterPassiveAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupPassiveAbilities);
@@ -56,4 +60,7 @@ protected:
 	// lec 54_ ASC에서 FOnGameplayEffectAppliedDelegate를 사용하여 GameplayEffect가 적용될 때마다 호출되는 함수로 사용하기위해 AddUObject를 사용하여 Delegate를 바인딩합니다.
 	UFUNCTION(Client, Reliable)
 	void ClientEffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
+
+	UFUNCTION(Client, Reliable)
+	void ClientUpdateAbilityStatus(const FGameplayTag& AbilityTag, const FGameplayTag& StatusTag);
 };
