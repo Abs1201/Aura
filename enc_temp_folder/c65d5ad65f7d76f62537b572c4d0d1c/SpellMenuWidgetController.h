@@ -9,6 +9,7 @@
 #include "SpellMenuWidgetController.generated.h"
 
 
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled);
 // Dynamic: 리플렉션(런타임에 정보 접근할수있는 기능) 가능, 블루프린트 사용가능 -> UFUNCTION()필수
 // Multicast: 여러 함수 바인딩 가능

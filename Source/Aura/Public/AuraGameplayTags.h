@@ -61,6 +61,8 @@ public:
 	FGameplayTag Damage_Arcane;
 	FGameplayTag Damage_Physical;
 
+
+	FGameplayTag Abilities_None;
 	//lec 177.Melee Attack
 	FGameplayTag Abilities_Attack;
 	//224
