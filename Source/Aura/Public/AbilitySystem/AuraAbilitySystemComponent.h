@@ -56,6 +56,8 @@ public:
 	UFUNCTION(Server, Reliable)
 	void ServerSpendSpellPoints(const FGameplayTag& AbilityTag);
 
+	bool GetDescriptionByAbilityTag(const FGameplayTag& AbilityTag, FString& OutDescription, FString& OutNextLevelDescription);
+
 protected:
 	//242
 	virtual void OnRep_ActivateAbilities() override;
