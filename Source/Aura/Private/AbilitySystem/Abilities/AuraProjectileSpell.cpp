@@ -80,14 +80,14 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 	// This is how to use setByCaller Modifier Magnitude in bp.
 	const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
 	//lec158
-	for (auto& Pair : DamageTypes) {
-		const float ScaledDamage = Pair.Value.GetValueAtLevel(GetAbilityLevel());
-		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Pair.Key, ScaledDamage);
-	}
+	//for (auto& Pair : DamageTypes) {
+	//	const float ScaledDamage = Pair.Value.GetValueAtLevel(GetAbilityLevel());
+	//	UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Pair.Key, ScaledDamage);
+	//}
 
 	// this damage is from CT_Damage
-	//const float ScaledDamage = Damage.GetValueAtLevel(GetAbilityLevel()); 
-	//UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, GameplayTags.Damage, ScaledDamage);
+	const float ScaledDamage = Damage.GetValueAtLevel(GetAbilityLevel()); 
+	UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, DamageType, ScaledDamage);
 
 	Projectile->DamageEffectSpecHandle = SpecHandle;
 
