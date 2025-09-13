@@ -193,6 +193,27 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 	);
 
 	/*
+	Debuffs attributes
+	*/
+	GameplayTags.Debuff_Chance = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Debuff.Chance"),
+		FString("Chance to apply a Debuff")
+	);
+	GameplayTags.Debuff_Damage = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Debuff.Damage"),
+		FString("Damage applied by a Debuff")
+	);
+	GameplayTags.Debuff_Frequency = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Debuff.Frequency"),
+		FString("Frequency at which a Debuff deals damage")
+	);
+	GameplayTags.Debuff_Duration = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Debuff.Duration"),
+		FString("Duration of a Debuff")
+	);
+
+
+	/*
 	Meta Attributes 256
 	*/
 	GameplayTags.Attributes_Meta_IncomingXP = UGameplayTagsManager::Get().AddNativeGameplayTag(

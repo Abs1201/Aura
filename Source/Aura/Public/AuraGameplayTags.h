@@ -69,6 +69,12 @@ public:
 	FGameplayTag Debuff_Arcane;
 	FGameplayTag Debuff_Physical;
 
+	//304
+	FGameplayTag Debuff_Chance;
+	FGameplayTag Debuff_Damage;
+	FGameplayTag Debuff_Frequency;
+	FGameplayTag Debuff_Duration;
+
 	FGameplayTag Abilities_None;
 	//lec 177.Melee Attack
 	FGameplayTag Abilities_Attack;
