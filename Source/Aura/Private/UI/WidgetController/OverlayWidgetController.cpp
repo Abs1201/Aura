@@ -122,7 +122,7 @@ void UOverlayWidgetController::OnXPChanged(int32 NewXP)
 		OnXPPercentChangedDelegate.Broadcast(XPBarPercent);
 	}
 }
-
+//300. overlaywidget도 SpellMenuWidget에서 equip하면 동기화
 void UOverlayWidgetController::OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot) const
 {
 	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
