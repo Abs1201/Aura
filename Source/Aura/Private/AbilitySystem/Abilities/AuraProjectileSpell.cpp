@@ -60,36 +60,40 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 		Cast<APawn>(GetOwningActorFromActorInfo()),
 		ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 
-	// lec 150(maybe): filling up other variables in effectcontext
-	// lec 124
-	// Give the Projectile a Gameplay Effect Spec for causing Damage.
-	const UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo());
-	FGameplayEffectContextHandle EffectContextHandle = SourceASC->MakeEffectContext();
-	EffectContextHandle.SetAbility(this);
-	EffectContextHandle.AddSourceObject(Projectile);
-	TArray<TWeakObjectPtr<AActor>> Actors;
-	Actors.Add(Projectile);
-	EffectContextHandle.AddActors(Actors);
-	FHitResult HitResult;
-	HitResult.Location = ProjectileTargetLocation;
-	EffectContextHandle.AddHitResult(HitResult);
+	//// lec 150(maybe): filling up other variables in effectcontext
+	//// lec 124
+	//// Give the Projectile a Gameplay Effect Spec for causing Damage.
+	//const UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo());
+	//FGameplayEffectContextHandle EffectContextHandle = SourceASC->MakeEffectContext();
+	//EffectContextHandle.SetAbility(this);
+	//EffectContextHandle.AddSourceObject(Projectile);
+	//TArray<TWeakObjectPtr<AActor>> Actors;
+	//Actors.Add(Projectile);
+	//EffectContextHandle.AddActors(Actors);
+	//FHitResult HitResult;
+	//HitResult.Location = ProjectileTargetLocation;
+	//EffectContextHandle.AddHitResult(HitResult);
 
-	const FGameplayEffectSpecHandle SpecHandle = SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle);
+	//const FGameplayEffectSpecHandle SpecHandle = SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle);
 
-	//lec 134
-	// This is how to use setByCaller Modifier Magnitude in bp.
-	const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
-	//lec158
-	//for (auto& Pair : DamageTypes) {
-	//	const float ScaledDamage = Pair.Value.GetValueAtLevel(GetAbilityLevel());
-	//	UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Pair.Key, ScaledDamage);
-	//}
+	////lec 134
+	//// This is how to use setByCaller Modifier Magnitude in bp.
+	//const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
+	////lec158
+	////for (auto& Pair : DamageTypes) {
+	////	const float ScaledDamage = Pair.Value.GetValueAtLevel(GetAbilityLevel());
+	////	UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, Pair.Key, ScaledDamage);
+	////}
 
-	// this damage is from CT_Damage
-	const float ScaledDamage = Damage.GetValueAtLevel(GetAbilityLevel()); 
-	UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, DamageType, ScaledDamage);
+	//// this damage is from CT_Damage
+	//const float ScaledDamage = Damage.GetValueAtLevel(GetAbilityLevel()); 
+	//UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, DamageType, ScaledDamage);
 
-	Projectile->DamageEffectSpecHandle = SpecHandle;
+	//Projectile->DamageEffectSpecHandle = SpecHandle;
+
+	//306
+	Projectile->DamageEffectParams = MakeDamageEffectParamsFromClassDefaults();
+
 
 	Projectile->FinishSpawning(SpawnTransform);
 	
