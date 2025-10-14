@@ -72,6 +72,8 @@ void AAuraCharacter::InitAbilityActorInfo()
     // 지금 lec54하다가 보는중인데 아래 두개가 지금 이 클래스가 avataractor 라서 PlayerState에서 가져와서 씌운듯.
     AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
     AttributeSet = AuraPlayerState->GetAttributeSet();
+    //311
+    OnASCRegistered.Broadcast(AbilitySystemComponent);
 
     if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(GetController()))
     {

@@ -10,6 +10,7 @@
 #include "Interaction/CombatInterface.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include <AuraAbilityTypes.h>
+#include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"
 
 struct AuraDamageStatics {
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Armor); //DECLARE_는 선언 (멤버 변수 생김), 여기서 ~Property, ~Def 생김. 그런 매크로임.
@@ -243,6 +244,7 @@ void UExecCalc_Damage::DetermineDebuff(const FGameplayEffectCustomExecutionParam
 			const bool bDebuff = FMath::RandRange(1, 100) < EffectiveDebuffChance;
 			if (bDebuff)
 			{
+
 				FGameplayEffectContextHandle ContextHandle = Spec.GetContext();
 
 				UAuraAbilitySystemLibrary::SetIsSuccessfulDebuff(ContextHandle, true);

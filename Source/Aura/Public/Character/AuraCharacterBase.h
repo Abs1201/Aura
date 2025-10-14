@@ -16,6 +16,7 @@ class UGameplayEffect;
 class UGameplayAbility;
 class UAnimMontage;
 class UNiagaraSystem;
+class UDebuffNiagaraComponent;
 
 UCLASS(Abstract)
 class AURA_API AAuraCharacterBase : public ACharacter, public IAbilitySystemInterface, public ICombatInterface
@@ -45,9 +46,14 @@ public:
 	//226
 	virtual void IncrementMinionCount_Implementation(int32 Count) override { MinionCount += Count; }
 	virtual ECharacterClass GetCharacterClass_Implementation() override { return CharacterClass; }
+	virtual FOnASCRegistered GetOnASCRegisteredDelegate() override { return OnASCRegistered; }
+	FORCEINLINE virtual FOnDeath& GetOnDeathDelegate() override { return OnDeath; }
 	/*End Combat Interface*/
 	
-	
+	//311
+	FOnASCRegistered OnASCRegistered;
+	FOnDeath OnDeath;
+
 	// lec 185
 	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override { return AttackMontages; }
 
@@ -128,6 +134,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	ECharacterClass CharacterClass = ECharacterClass::Warrior;
+
+	//311
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UDebuffNiagaraComponent> BurnDebuffComponent;
 
 private:
 	// lec 98
