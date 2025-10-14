@@ -36,6 +36,8 @@ void UDebuffNiagaraComponent::BeginPlay()
 
 void UDebuffNiagaraComponent::DebuffTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
 {
+	//314 ++
+	//const bool bOwnerAlive = IsValid(GetOwner()) && GetOwner()->Implements<UCombatInterface>() && ICombatInterface::Execute_IsDead(GetOwner());
 	if (NewCount > 0) {
 		Activate();
 	}

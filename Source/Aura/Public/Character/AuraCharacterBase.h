@@ -31,7 +31,7 @@ public:
 	/*Combat Interface*/
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
 	//lec 138
-	virtual void Die() override;
+	virtual void Die(const FVector& DeathImpulse) override;
 	// revised at lec 180
 	virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag) override;
 	// diff from lec 181 _ I just implement here
@@ -58,7 +58,7 @@ public:
 	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override { return AttackMontages; }
 
 	UFUNCTION(NetMulticast, Reliable)
-	virtual void MulticastHandleDeath();
+	virtual void MulticastHandleDeath(const FVector& DeathImpulse);
 
 	//lec 185
 	UPROPERTY(EditAnywhere, Category="Combat")
