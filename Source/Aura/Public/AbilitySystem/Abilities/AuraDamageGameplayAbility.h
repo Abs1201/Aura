@@ -23,6 +23,7 @@ public:
 	void CauseDamage(AActor* TargetActor);
 
 	//305
+	UFUNCTION(BlueprintPure)
 	FDamageEffectParams MakeDamageEffectParamsFromClassDefaults(AActor* TargetActor = nullptr) const;
 
 protected:

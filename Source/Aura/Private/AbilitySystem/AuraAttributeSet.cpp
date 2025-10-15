@@ -162,6 +162,16 @@ void UAuraAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 			{
 				Debuff(Props);
 			}
+			//315
+			const FVector& KnockbackForce = UAuraAbilitySystemLibrary::GetKnockbackForce(Props.EffectContextHandle);
+			if(!KnockbackForce.IsNearlyZero(1.f))
+			{
+				if (Props.TargetCharacter->GetCharacterMovement())
+				{
+					Props.TargetCharacter->LaunchCharacter(KnockbackForce, true, true);
+				}
+			}
+
 		}
 		else 
 		{
