@@ -39,6 +39,9 @@ public:
 
 	void AbilityInputTagHeld(const FGameplayTag& InputTag);
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
+	//320
+	void AbilityInputTagPressed(const FGameplayTag& InputTag);
+
 	void ForEachAbility(const FForEachAbility& Delegate);
 
 	static FGameplayTag GetAbilityTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
