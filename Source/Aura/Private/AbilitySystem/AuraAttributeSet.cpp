@@ -292,16 +292,19 @@ void UAuraAttributeSet::PostAttributeChange(const FGameplayAttribute& Attribute,
 
 void UAuraAttributeSet::ShowFloatingText(const FEffectProperties& Props, float Damage, bool bBlockedHit, bool bCriticalHit) const
 {
-	if (Props.SourceCharacter != Props.TargetCharacter) {
-		if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.SourceCharacter->Controller)) {
-			PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
-			return;
-		}
-		//lec 182 _ this is for enemy hitting and showing dmg to player
-		if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.TargetCharacter->Controller)) {
-			PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
+	if (IsValid(Props.TargetCharacter)) {
+		if (Props.SourceCharacter != Props.TargetCharacter) {
+			if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.SourceCharacter->Controller)) {
+				PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
+				return;
+			}
+			//lec 182 _ this is for enemy hitting and showing dmg to player
+			if (AAuraPlayerController* PC = Cast<AAuraPlayerController>(Props.TargetCharacter->Controller)) {
+				PC->ShowDamageNumber(Damage, Props.TargetCharacter, bBlockedHit, bCriticalHit);
+			}
 		}
 	}
+	
 }
 
 void UAuraAttributeSet::SendXPEvent(const FEffectProperties& Props)
