@@ -115,12 +115,16 @@ public:
 	//303
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToDebuffs;
-
 	
-
 
 	//136. react를 GE로 줄 줄이야..
 	FGameplayTag Effects_HitReact;
+
+	//323.
+	FGameplayTag Player_Block_InputPressed;
+	FGameplayTag Player_Block_InputHeld;
+	FGameplayTag Player_Block_InputReleased;
+	FGameplayTag Player_Block_CursorTrace;
 
 protected:
 
