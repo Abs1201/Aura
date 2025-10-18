@@ -48,6 +48,7 @@ public:
 	virtual ECharacterClass GetCharacterClass_Implementation() override { return CharacterClass; }
 	virtual FOnASCRegistered GetOnASCRegisteredDelegate() override { return OnASCRegistered; }
 	FORCEINLINE virtual FOnDeath& GetOnDeathDelegate() override { return OnDeath; }
+	virtual USkeletalMeshComponent* GetWeapon_Implementation() override { return Weapon; }
 	/*End Combat Interface*/
 	
 	//311
