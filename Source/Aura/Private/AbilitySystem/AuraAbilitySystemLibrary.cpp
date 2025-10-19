@@ -329,42 +329,42 @@ void UAuraAbilitySystemLibrary::GetClosestTargets(int32 MaxTargets, const TArray
 		return; 
 	}
 
-	TArray <TPair<float, AActor*>> DistancesSq;
-	for (AActor* Actor : Actors)
-	{
-		const float DistanceSq = FVector::DistSquared(Origin, Actor->GetActorLocation());
-		DistancesSq.Add({DistanceSq, Actor});
-	}
-	DistancesSq.Sort([](const TPair<float, AActor*>& A, const TPair<float, AActor*>& B)
-	{
-		return A.Key < B.Key;
-		});
-	for (int32 i = 0; i < MaxTargets && i < DistancesSq.Num(); i++)
-	{
-		OutClosestTargets.Add(DistancesSq[i].Value);
-	}
-	//
-	//TArray<AActor*> ActorsToCheck = Actors;
-	//int32 NumTargetsFound = 0;
-
-	//while (NumTargetsFound < MaxTargets)
+	//TArray <TPair<float, AActor*>> DistancesSq;
+	//for (AActor* Actor : Actors)
 	//{
-	//	if (ActorsToCheck.Num() == 0) break;
-	//	double ClosestDistance = TNumericLimits<double>::Max();
-	//	AActor* ClosestActor;
-	//	for (AActor* PotentialTarget : ActorsToCheck)
-	//	{
-	//		const double Distance = (PotentialTarget->GetActorLocation() - Origin).Length();
-	//		if (Distance < ClosestDistance)
-	//		{
-	//			ClosestDistance = Distance;
-	//			ClosestActor = PotentialTarget;
-	//		}
-	//	}
-	//	ActorsToCheck.Remove(ClosestActor);
-	//	OutClosestTargets.AddUnique(ClosestActor);
-	//	++NumTargetsFound;
+	//	const float DistanceSq = FVector::DistSquared(Origin, Actor->GetActorLocation());
+	//	DistancesSq.Add({DistanceSq, Actor});
 	//}
+	//DistancesSq.Sort([](const TPair<float, AActor*>& A, const TPair<float, AActor*>& B)
+	//{
+	//	return A.Key < B.Key;
+	//	});
+	//for (int32 i = 0; i < MaxTargets && i < DistancesSq.Num(); i++)
+	//{
+	//	OutClosestTargets.Add(DistancesSq[i].Value);
+	//}
+	//
+	TArray<AActor*> ActorsToCheck = Actors;
+	int32 NumTargetsFound = 0;
+
+	while (NumTargetsFound < MaxTargets)
+	{
+		if (ActorsToCheck.Num() == 0) break;
+		double ClosestDistance = TNumericLimits<double>::Max();
+		AActor* ClosestActor;
+		for (AActor* PotentialTarget : ActorsToCheck)
+		{
+			const double Distance = (PotentialTarget->GetActorLocation() - Origin).Length();
+			if (Distance < ClosestDistance)
+			{
+				ClosestDistance = Distance;
+				ClosestActor = PotentialTarget;
+			}
+		}
+		ActorsToCheck.Remove(ClosestActor);
+		OutClosestTargets.AddUnique(ClosestActor);
+		++NumTargetsFound;
+	}
 }
 
 bool UAuraAbilitySystemLibrary::IsNotFriend(AActor* FirstActor, AActor* SecondActor)

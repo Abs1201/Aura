@@ -64,10 +64,10 @@ void UAuraBeamSpell::StoreAdditionalTargets(TArray<AActor*>& OutAdditionalTarget
 		GetAvatarActorFromActorInfo(),
 		OverlappingActors,
 		ActorsToIgnore,
-		850.f,
+		850.f, // 전기 연쇄 공격 범위.
 		MouseHitActor->GetActorLocation());
 	//int32 NumAdditionalTargets = FMath::Min(GetAbilityLevel()-1, MaxNumShockTargets);
 	int32 NumAdditionTargets = 5;
 	UAuraAbilitySystemLibrary::GetClosestTargets(NumAdditionTargets, OverlappingActors, OutAdditionalTargets, MouseHitActor->GetActorLocation());
-
+	
 }
