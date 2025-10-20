@@ -71,7 +71,8 @@ void AAuraCharacterBase::MulticastHandleDeath_Implementation(const FVector& Deat
 	bDead = true;
 	//311
 	OnDeath.Broadcast(this);
-
+	
+	// https://www.udemy.com/course/unreal-engine-5-gas-top-down-rpg/learn/lecture/40684118#questions/20998002
 	//GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore); 
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
