@@ -9,6 +9,9 @@
 #include "AuraGameplayTags.h"
 #include <Kismet/GameplayStatics.h>
 #include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"	
+#include "GameFramework/CharacterMovementComponent.h"
+#include <Net/UnrealNetwork.h>
+
 
 // Sets default values
 AAuraCharacterBase::AAuraCharacterBase()
@@ -32,6 +35,12 @@ AAuraCharacterBase::AAuraCharacterBase()
 
 
 
+}
+
+void AAuraCharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(AAuraCharacterBase, bIsStunned);
 }
 
 UAbilitySystemComponent* AAuraCharacterBase::GetAbilitySystemComponent() const
@@ -76,6 +85,17 @@ void AAuraCharacterBase::MulticastHandleDeath_Implementation(const FVector& Deat
 	//GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore); 
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+
+}
+
+void AAuraCharacterBase::StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
+{
+	bIsStunned = NewCount > 0;
+	GetCharacterMovement()->MaxWalkSpeed = bIsStunned ? 0.f : BaseWalkSpeed;
+}
+
+void AAuraCharacterBase::OnRep_Stunned()
+{
 
 }
 
