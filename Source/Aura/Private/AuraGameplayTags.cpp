@@ -311,6 +311,24 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 	);
 
 	/*
+	Passive Spells
+	*/
+	GameplayTags.Abilities_Passive_HaloOfProtection = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Passive.HaloOfProtection"),
+		FString("Halo of Protection Passive Ability Tag")
+	);
+	GameplayTags.Abilities_Passive_LifeSiphon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Passive.LifeSiphon"),
+		FString("Life Siphon Passive Ability Tag")
+	);
+	GameplayTags.Abilities_Passive_ManaSiphon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Passive.ManaSiphon"),
+		FString("Mana Siphon Passive Ability Tag")
+	);
+
+
+
+	/*
 	 * Cooldown Tags
 	 */
 	GameplayTags.Cooldown_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag(

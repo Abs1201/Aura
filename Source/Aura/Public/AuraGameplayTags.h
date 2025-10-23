@@ -97,6 +97,12 @@ public:
 	FGameplayTag Abilities_Fire_FireBolt;
 	FGameplayTag Abilities_Lightning_Electrocute;
 
+	//337. Passvie spell tags
+	FGameplayTag Abilities_Passive_HaloOfProtection;
+	FGameplayTag Abilities_Passive_LifeSiphon;
+	FGameplayTag Abilities_Passive_ManaSiphon;
+
+
 	FGameplayTag Cooldown_Fire_FireBolt;
 
 	// lec 184. Montage Gameplay Tag. 골렘뿐만아니라 몬스터들의 공격 소켓을 태그로 받아오기위함. ,207
@@ -125,6 +131,8 @@ public:
 	FGameplayTag Player_Block_InputHeld;
 	FGameplayTag Player_Block_InputReleased;
 	FGameplayTag Player_Block_CursorTrace;
+
+
 
 protected:
 
