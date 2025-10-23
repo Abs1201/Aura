@@ -50,6 +50,8 @@ public:
 	virtual FOnASCRegistered& GetOnASCRegisteredDelegate() override { return OnASCRegistered; }
 	FORCEINLINE virtual FOnDeath& GetOnDeathDelegate() override { return OnDeath; }
 	virtual USkeletalMeshComponent* GetWeapon_Implementation() override { return Weapon; }
+	virtual bool IsBeingShocked_Implementation() const override { return bIsBeingShocked; }
+	virtual void SetIsBeingShocked_Implementation(bool bInShock) override { bIsBeingShocked = bInShock; }
 	/*End Combat Interface*/
 	
 	//311
@@ -65,13 +67,14 @@ public:
 	//lec 185
 	UPROPERTY(EditAnywhere, Category="Combat")
 	TArray<FTaggedMontage> AttackMontages;
-
+	//336
 	UPROPERTY(ReplicatedUsing=OnRep_Stunned, BlueprintReadOnly)
 	bool bIsStunned = false;
-
 	UPROPERTY(ReplicatedUsing = OnRep_Burned, BlueprintReadOnly)
 	bool bIsBurned = false;
-
+	//337
+	UPROPERTY(Replicated, BlueprintReadOnly)
+	bool bIsBeingShocked = false;
 
 	UFUNCTION()
 	virtual void OnRep_Stunned();
