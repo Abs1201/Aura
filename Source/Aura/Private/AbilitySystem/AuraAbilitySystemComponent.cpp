@@ -283,7 +283,7 @@ void UAuraAbilitySystemComponent::ServerEquipAbility_Implementation(const FGamep
 		ClientEquipAbility(AbilityTag, GameplayTags.Abilities_Status_Equipped, Slot, PrevSlot);
 	}
 }
-void UAuraAbilitySystemComponent::ClientEquipAbility(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot)
+void UAuraAbilitySystemComponent::ClientEquipAbility_Implementation(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot)
 {
 	AbilityEquipped.Broadcast(AbilityTag, Status, Slot, PreviousSlot);
 }
