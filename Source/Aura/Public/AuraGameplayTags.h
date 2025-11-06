@@ -96,6 +96,7 @@ public:
 	//239
 	FGameplayTag Abilities_Fire_FireBolt;
 	FGameplayTag Abilities_Lightning_Electrocute;
+	FGameplayTag Abilities_Arcane_ArcaneShards;
 
 	//337. Passvie spell tags
 	FGameplayTag Abilities_Passive_HaloOfProtection;
