@@ -10,6 +10,7 @@
 
 #include "AuraCharacterBase.generated.h"
 
+
 class UAbilitySystemComponent;
 class UAttributeSet;
 class UGameplayEffect;
@@ -28,6 +29,7 @@ public:
 	AAuraCharacterBase();
 	virtual void Tick(float DeltaTime) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
@@ -54,11 +56,13 @@ public:
 	virtual USkeletalMeshComponent* GetWeapon_Implementation() override { return Weapon; }
 	virtual bool IsBeingShocked_Implementation() const override { return bIsBeingShocked; }
 	virtual void SetIsBeingShocked_Implementation(bool bInShock) override { bIsBeingShocked = bInShock; }
+	virtual FOnDamageSignature& GetOnDamageDelegate() override { return OnDamageDelegate; }
 	/*End Combat Interface*/
 	
 	//311
 	FOnASCRegistered OnASCRegistered;
 	FOnDeath OnDeath;
+	FOnDamageSignature OnDamageDelegate;
 
 	// lec 185
 	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override { return AttackMontages; }
