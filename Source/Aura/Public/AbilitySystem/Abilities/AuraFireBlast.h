@@ -21,8 +21,7 @@ public:
 	virtual FString GetDescription(int32 Level) override;
 	virtual FString GetNextLevelDescription(int32 Level) override;
 
-	//UPROPERTY(BlueprintCallable)
-	//TArray<AAuraFireBall*> SpawnFireBalls();
+
 
 	UFUNCTION(BlueprintCallable)
 	TArray<AAuraFireBall*> SpawnFireBalls();
