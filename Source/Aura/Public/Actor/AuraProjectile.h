@@ -38,6 +38,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void Destroyed() override;
 
+	UFUNCTION(BlueprintCallable)
 	void OnHit();
 
 	UFUNCTION()
