@@ -404,4 +404,10 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Player.Block.InputReleased"),
 		FString("Block input when released")
 	);
+
+	/* Gameplay Cue */
+	GameplayTags.GameplayCue_FireBlast = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("GameplayCue.FireBlast"),
+		FString("Gameplay Cue for Fire Blast")
+	);
 }
