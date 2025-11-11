@@ -71,12 +71,7 @@ void AAuraProjectile::Destroyed()
 void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if(!IsValid(DamageEffectParams.SourceAbilitySystemComponent)) return;
-	AActor* SourceAvatarActor = DamageEffectParams.SourceAbilitySystemComponent->GetAvatarActor();
-	//lec 162.
-	if (SourceAvatarActor == OtherActor) return;
-	//196.
-	if (!UAuraAbilitySystemLibrary::IsNotFriend(SourceAvatarActor, OtherActor)) return;
+	if (!IsValidOverlap(OtherActor)) return;
 	if (!bHit) OnHit(); // bHit이 있는이유: sound랑 spawn이 한번만	실행되게 하려고.
 
 
@@ -111,4 +106,14 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 	{
 		bHit = true;
 	}
+}
+//368
+bool AAuraProjectile::IsValidOverlap(AActor* OtherActor)
+{
+	if (!IsValid(DamageEffectParams.SourceAbilitySystemComponent)) return false;
+	AActor* SourceAvatarActor = DamageEffectParams.SourceAbilitySystemComponent->GetAvatarActor();
+	if (SourceAvatarActor == OtherActor) return false; // 162
+	if (!UAuraAbilitySystemLibrary::IsNotFriend(SourceAvatarActor, OtherActor)) return false; // 196
+
+	return true;
 }
