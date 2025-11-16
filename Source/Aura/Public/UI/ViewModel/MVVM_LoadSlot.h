@@ -18,7 +18,7 @@ class AURA_API UMVVM_LoadSlot : public UMVVMViewModelBase
 {
 	GENERATED_BODY()
 public:
-
+	//384 _ want to switch widgets by index but cant bind directly to property so use delegate
 	UPROPERTY(BlueprintAssignable)
 	FSetWidgetSwitcherIndex SetWidgetSwitcherIndex;
 
