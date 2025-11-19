@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "MVVMViewModelBase.h"
 #include "MVVM_LoadScreen.generated.h"
-
+//389
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSlotSelected);
 
 //383
