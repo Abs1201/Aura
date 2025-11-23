@@ -19,6 +19,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/HUD/AuraHUD.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -221,6 +222,19 @@ void AAuraCharacter::SaveProgress_Implementation(const FName& CheckpointTag)
 
         SaveData->PlayerStartTag = CheckpointTag;
 
+        //400
+        if (AAuraPlayerState* AuraPlayerState = Cast<AAuraPlayerState>(GetPlayerState()))
+        {
+            SaveData->PlayerLevel = AuraPlayerState->GetPlayerLevel();
+            SaveData->XP = AuraPlayerState->GetXP();
+            SaveData->AttributePoints = AuraPlayerState->GetAttributePoints();
+			SaveData->SpellPoints = AuraPlayerState->GetSpellPoints();
+        }
+        SaveData->Strength = UAuraAttributeSet::GetStrengthAttribute().GetNumericValue(GetAttributeSet());
+        SaveData->Intelligence = UAuraAttributeSet::GetIntelligenceAttribute().GetNumericValue(GetAttributeSet());
+        SaveData->Resilience = UAuraAttributeSet::GetResilienceAttribute().GetNumericValue(GetAttributeSet());
+        SaveData->Vigor = UAuraAttributeSet::GetVigorAttribute().GetNumericValue(GetAttributeSet());
+        
         AuraGameMode->SaveInGameProgressData(SaveData);
     }
 }
