@@ -120,7 +120,7 @@ void UMVVM_LoadScreen::LoadData()
 
 		LoadSlot.Value->SetMapName(SaveObject->MapName);
 		LoadSlot.Value->PlayerStartTag = SaveObject->PlayerStartTag;
-		//LoadSlot.Value->SetPlayerLevel(SaveObject->PlayerLevel);
+		LoadSlot.Value->SetPlayerLevel(SaveObject->PlayerLevel);
 	}
 }
 
