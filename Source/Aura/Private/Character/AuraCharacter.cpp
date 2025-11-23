@@ -20,6 +20,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "UI/HUD/AuraHUD.h"
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -69,7 +70,9 @@ void AAuraCharacter::PossessedBy(AController* NewController)
     LoadProgress();
 
     //lec 98
-    AddCharacterAbilities();
+    //AddCharacterAbilities();
+	//402 LoadProgress에서 호출하도록 변경
+
 }
 //401
 void AAuraCharacter::LoadProgress()
@@ -80,13 +83,7 @@ void AAuraCharacter::LoadProgress()
         ULoadScreenSaveGame* SaveData = AuraGameMode->RetrieveInGameSaveData();
         if (SaveData == nullptr) return;
 
-        if(AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>())
-        {
-            AuraPlayerState->SetLevel(SaveData->PlayerLevel);
-            AuraPlayerState->SetXP(SaveData->XP);
-            AuraPlayerState->SetAttributePoints(SaveData->AttributePoints);
-            AuraPlayerState->SetSpellPoints(SaveData->SpellPoints);
-		}
+
 
         if (SaveData->bFirstTimeLoadIn)
         {
@@ -95,7 +92,17 @@ void AAuraCharacter::LoadProgress()
         }
         else
         {
+            //TODO: Load in Abilities from Disk
+            //AddCharacterAbilities();
 
+            if (AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>())
+            {
+                AuraPlayerState->SetLevel(SaveData->PlayerLevel);
+                AuraPlayerState->SetXP(SaveData->XP);
+                AuraPlayerState->SetAttributePoints(SaveData->AttributePoints);
+                AuraPlayerState->SetSpellPoints(SaveData->SpellPoints);
+            }
+            UAuraAbilitySystemLibrary::InitializeDefaultAttributesFromSaveData(this, AbilitySystemComponent, SaveData);
         }
     }
 }
