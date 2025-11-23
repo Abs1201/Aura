@@ -53,6 +53,9 @@ public:
 	virtual void OnRep_Stunned() override;
 	virtual void OnRep_Burned() override;
 
+	//401
+	void LoadProgress();
+
 protected:
 	virtual void BeginPlay() override;
 

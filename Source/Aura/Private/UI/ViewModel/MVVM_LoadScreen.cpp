@@ -40,7 +40,6 @@ void UMVVM_LoadScreen::NewSlotButtonPressed(int32 Slot, const FString& EnteredNa
 		return;
 	}
 
-
 	LoadSlots[Slot]->SetMapName(AuraGameMode->DefaultMapName);
 	LoadSlots[Slot]->SetPlayerName(EnteredName);
 	LoadSlots[Slot]->SetPlayerLevel(1);
