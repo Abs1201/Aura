@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerStart.h"
 
-#include "CheckPoint.generated.h"
+#include "Checkpoint.generated.h"
 
 
 class USphereComponent;
@@ -13,12 +13,12 @@ class USphereComponent;
  * 
  */
 UCLASS()
-class AURA_API ACheckPoint : public APlayerStart
+class AURA_API ACheckpoint : public APlayerStart
 {
 	GENERATED_BODY()
 	
 public:
-	ACheckPoint(const FObjectInitializer& ObjectInitializer);
+	ACheckpoint(const FObjectInitializer& ObjectInitializer);
 
 protected:
 	UFUNCTION(BlueprintCallable)
@@ -27,13 +27,13 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void CheckPointReached(UMaterialInstanceDynamic* DynamicMaterialInstance);
+	void CheckpointReached(UMaterialInstanceDynamic* DynamicMaterialInstance);
 
 	void HandleGlowEffects();
 
 private:
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UStaticMeshComponent> CheckPointMesh;
+	TObjectPtr<UStaticMeshComponent> CheckpointMesh;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;

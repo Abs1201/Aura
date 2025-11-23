@@ -2,20 +2,23 @@
 
 
 #include "Character/AuraCharacter.h"
-#include "Camera/CameraComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "Components/CapsuleComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Player/AuraPlayerState.h"
-#include "AbilitySystem/AuraAbilitySystemComponent.h"
-#include <Player/AuraPlayerController.h>
-#include <UI/HUD/AuraHUD.h>
-#include "AbilitySystem/Data/LevelUpInfo.h"
-#include "NiagaraComponent.h"
-//#include "Camera/CameraComponent.h"
-//#include "GameFramework/SpringArmComponent.h"
+
+#include "AbilitySystemComponent.h"
 #include "AuraGameplayTags.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/Data/LevelUpInfo.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Player/AuraPlayerController.h"
+#include "Player/AuraPlayerState.h"
+#include "NiagaraComponent.h"
 #include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"
+#include "Camera/CameraComponent.h"
+#include "Game/AuraGameInstance.h"
+#include "Game/AuraGameModeBase.h"
+#include "Game/LoadScreenSaveGame.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "UI/HUD/AuraHUD.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -205,6 +208,20 @@ void AAuraCharacter::HideMagicCircle_Implementation()
     {
         AuraPlayerController->HideMagicCircle();
         AuraPlayerController->bShowMouseCursor = true;
+    }
+}
+
+void AAuraCharacter::SaveProgress_Implementation(const FName& CheckpointTag)
+{
+    AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(this));
+    if (AuraGameMode)
+    {
+        ULoadScreenSaveGame* SaveData = AuraGameMode->RetrieveInGameSaveData();
+        if (SaveData == nullptr) return;
+
+        SaveData->PlayerStartTag = CheckpointTag;
+
+        AuraGameMode->SaveInGameProgressData(SaveData);
     }
 }
 
