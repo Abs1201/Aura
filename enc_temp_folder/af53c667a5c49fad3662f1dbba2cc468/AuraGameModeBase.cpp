@@ -92,7 +92,7 @@ void AAuraGameModeBase::SaveWorldState(UWorld* World)
 		}
 
 		FSavedMap SavedMap = SaveGame->GetSavedMapWithMapName(WorldName);
-		SavedMap.SavedActors.Empty(); 
+		SavedMap.SavedActors.Empty(); // clear it out, we'll fill it in with "actors"
 
 		for (FActorIterator It(World); It; ++It)
 		{

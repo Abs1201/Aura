@@ -295,7 +295,7 @@ void UAuraAbilitySystemComponent::ServerUpgradeAttribute_Implementation(const FG
 	Payload.EventTag = AttributeTag;
 	Payload.EventMagnitude = 1.f;
 
-	//TODO: 401~406: 에러있음. 로드이후 Attribue 업그레이드시 작동 안함.
+	// TODO) 401~406: Attribute++ not working.
 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetAvatarActor(), AttributeTag, Payload);
 
 	if (GetAvatarActor()->Implements<UPlayerInterface>())
