@@ -74,6 +74,11 @@ void AAuraCharacter::PossessedBy(AController* NewController)
     //AddCharacterAbilities();
 	//402 LoadProgress에서 호출하도록 변경
 
+    if (AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(this)))
+    {
+        AuraGameMode->LoadWorldState(GetWorld());
+    }
+
 }
 //401
 void AAuraCharacter::LoadProgress()
