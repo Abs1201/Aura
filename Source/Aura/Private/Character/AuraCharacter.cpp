@@ -95,6 +95,10 @@ void AAuraCharacter::LoadProgress()
         {
             //TODO: Load in Abilities from Disk
             //AddCharacterAbilities();
+            if(UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
+            {
+                AuraASC->AddCharacterAbilitiesFromSaveData(SaveData);
+			}
 
             if (AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>())
             {
@@ -129,7 +133,7 @@ void AAuraCharacter::InitAbilityActorInfo()
             AuraHUD->InitOverlay(AuraPlayerController, AuraPlayerState, AbilitySystemComponent, AttributeSet);
         }
     }
-    InitializeDefaultAttributes();
+    //InitializeDefaultAttributes();
 }
 
 void AAuraCharacter::OnRep_PlayerState()

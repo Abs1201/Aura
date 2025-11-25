@@ -16,6 +16,8 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FDeactivatePassiveAbility, const FGameplayTa
 //344
 DECLARE_MULTICAST_DELEGATE_TwoParams(FActivatePassiveEffect, const FGameplayTag&, bool /*bIsActive*/);
 
+
+class ULoadScreenSaveGame;
 /**
  * 
  */
@@ -35,6 +37,9 @@ public:
 	FAbilityEquipped AbilityEquipped;
 	FDeactivatePassiveAbility DeactivePassiveAbility;
 	FActivatePassiveEffect ActivatePassiveEffect;
+
+	//406. Loading Abilities
+	void AddCharacterAbilitiesFromSaveData(ULoadScreenSaveGame* SaveData);
 
 	// lec 98
 	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
