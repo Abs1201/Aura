@@ -40,6 +40,14 @@ AAuraEnemy::AAuraEnemy()
 	HealthBar->SetupAttachment(GetRootComponent());
 	
 	BaseWalkSpeed = 250.f;
+
+	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	GetMesh()->MarkRenderStateDirty();
+	if (Weapon)
+	{
+		Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+		Weapon->MarkRenderStateDirty();
+	}
 }
 
 void AAuraEnemy::PossessedBy(AController* NewController)
@@ -61,10 +69,8 @@ void AAuraEnemy::HighlightActor_Implementation()
 {
 	//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.f, 20, FColor::Blue, false, 5.f);
 	GetMesh()->SetRenderCustomDepth(true);
-	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 	if (Weapon) {
 		Weapon->SetRenderCustomDepth(true);
-		Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 	}
 
 
@@ -77,6 +83,10 @@ void AAuraEnemy::UnHighlightActor_Implementation()
 	if (Weapon) {
 		Weapon->SetRenderCustomDepth(false);
 	}
+}
+
+void AAuraEnemy::SetMoveToLocation_Implementation(FVector& OutDestination)
+{
 }
 
 int32 AAuraEnemy::GetPlayerLevel_Implementation()
