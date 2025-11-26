@@ -18,6 +18,14 @@ class USplineComponent;
 class UNiagaraSystem;
 class AMagicCircle;
 
+enum ETargetingStatus
+{
+	TargetingEnemy,
+	TargetingNonEnemy,
+	NotTargeting
+};
+
+
 /**
  * 
  */
@@ -57,10 +65,13 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 
 	void CursorTrace();
-	TScriptInterface<IHighlightInterface> LastActor;
-	TScriptInterface<IHighlightInterface> ThisActor;
+	//TScriptInterface<IHighlightInterface> LastActor;
+	//TScriptInterface<IHighlightInterface> ThisActor;
+	TObjectPtr<AActor> LastActor;
+	TObjectPtr<AActor> ThisActor;
 	FHitResult CursorHit;
-
+	static void HighlightActor(AActor* InActor);
+	static void UnHighlightActor(AActor* InActor);
 
 	//lec 102
 	void AbilityInputTagPressed(FGameplayTag InputTag);
@@ -81,7 +92,9 @@ private:
 	float FollowTime = 0.f;
 	float ShortPressThreshold = 0.5f;
 	bool bAutoRunning = false;
-	bool bTargeting = false;
+	//bool bTargeting = false;
+	//412
+	ETargetingStatus TargetingStatus = ETargetingStatus::NotTargeting;
 
 	UPROPERTY(EditDefaultsOnly)
 	float AutoRunAcceptanceRadius = 50.f;

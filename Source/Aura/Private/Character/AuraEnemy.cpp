@@ -57,7 +57,7 @@ void AAuraEnemy::PossessedBy(AController* NewController)
 	
 }
 
-void AAuraEnemy::HighlightActor()
+void AAuraEnemy::HighlightActor_Implementation()
 {
 	//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.f, 20, FColor::Blue, false, 5.f);
 	GetMesh()->SetRenderCustomDepth(true);
@@ -70,7 +70,7 @@ void AAuraEnemy::HighlightActor()
 
 }
 
-void AAuraEnemy::UnHighlightActor()
+void AAuraEnemy::UnHighlightActor_Implementation()
 {
 	//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.f, 20, FColor::Red, false, 5.f);
 	GetMesh()->SetRenderCustomDepth(false);
