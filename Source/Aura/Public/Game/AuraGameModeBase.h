@@ -32,8 +32,8 @@ public:
 	ULoadScreenSaveGame* RetrieveInGameSaveData();
 	void SaveInGameProgressData(ULoadScreenSaveGame* SaveObject);
 
-	// 408
-	void SaveWorldState(UWorld* World) const;
+	// 408, 416
+	void SaveWorldState(UWorld* World, const FString& DestinationMapAssetName = FString("")) const;
 	void LoadWorldState(UWorld* World) const;
 
 	void TravelToMap(UMVVM_LoadSlot* Slot);
@@ -52,6 +52,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	TMap<FString, TSoftObjectPtr<UWorld>> Maps;
+
+	FString GetMapNameFromMapAssetName(const FString& MapAssetName) const;
 
 	virtual AActor* ChoosePlayerStart_Implementation(AController* Player) override;
 
