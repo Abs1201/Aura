@@ -38,7 +38,6 @@ public:
 
 	UPROPERTY()
 	FString MapAssetName;
-
 	/** Field Notifies */
 
 
