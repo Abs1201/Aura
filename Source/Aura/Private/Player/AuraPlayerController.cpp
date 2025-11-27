@@ -187,13 +187,13 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 		if (IsValid(ThisActor))
 		{
 			TargetingStatus = ThisActor->Implements<UEnemyInterface>() ? TargetingEnemy : TargetingNonEnemy;
-			bAutoRunning = false;
 		}
 		else
 		{
 			TargetingStatus = NotTargeting;
 		}
-		
+		bAutoRunning = false;
+
 	}
 	if (GetASC()) GetASC()->AbilityInputTagPressed(InputTag);
 }
