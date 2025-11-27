@@ -39,7 +39,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	//423 Loot Effect
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	FVector CalculatedLocation;
 
 	UPROPERTY(BlueprintReadOnly)
