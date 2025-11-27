@@ -16,6 +16,7 @@ class UAttributeMenuWidgetController;
 class UOverlayWidgetController;
 struct FWidgetControllerParams;
 class ULoadScreenSaveGame;
+class ULootTiers;
 /**
  * 
  */
@@ -63,7 +64,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|CharacterClassDefaults")
 	static UAbilityInfo* GetAbilityInfo(const UObject* WorldContextObject);
-
+	//422
+	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|CharacterClassDefaults", meta = (DefaultToSelf = "WorldContextObject"))
+	static ULootTiers* GetLootTiers(const UObject* WorldContextObject);
 	/*
 	* Effect Context
 	*/
